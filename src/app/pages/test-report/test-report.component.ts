@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { FaultType } from '../../data-models/fault-type';
 import { PickFaultType } from '../../store/actions';
@@ -13,9 +12,11 @@ import { PickFaultType } from '../../store/actions';
 })
 export class TestReportComponent {
 
-  pickedFaultType$: Observable<FaultType>
+  pickedFaultType: FaultType;
 
-  constructor(private store: Store<{ faults: { pickedFaultType: FaultType }}>) {}
+  constructor(private store: Store<any>) {
+    store.select(state => state.faults).subscribe(data => this.pickedFaultType = data.pickedFaultType);
+  }
 
   pickDrivingFaultType() {
     this.pickFaultType(FaultType.driving);

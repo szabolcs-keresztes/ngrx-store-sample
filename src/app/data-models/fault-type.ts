@@ -1,6 +1,6 @@
 
 export enum FaultType {
-  driving,
-  serious,
-  dangerous,
+  driving = 'Driving Fault',
+  serious = 'Serious Fault',
+  dangerous = 'Dangerous Fault',
 }
